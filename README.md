@@ -37,7 +37,7 @@
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML5</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
-    <li><a href="">Webpack</a><li>
+    <li><a href="https://webpack.js.org/guides/getting-started/#basic-setup">Webpack</a></li>
   </ul>
 </details>
 ### Key Features <a name="key-features"></a>
@@ -116,5 +116,5 @@ I would like to thank my Microveseinc
 
 ## :memo: License <a name="license"></a>
 
-This project is [MIT](https://github.com/beteland123/prortifolio/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/beteland123/Todo-list/blob/feature/todo-list-structure/LICENSE) licensed.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
