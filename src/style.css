@@ -1,15 +1,41 @@
 *{
-    color: blue;
+    color: rgb(3, 3, 4);
 }
 body{
     background-color: rgb(235, 226, 226);
 }
 .container{
-    background-color: rgb(227, 216, 216);
+    background-color: white;
     padding: 15px;
     display: flex;
     flex-direction: column;
-    margin: 18px;
+    margin: 3em;
+}
+#list_elemnt{
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
 
-
+#input_div{
+    border: 2px solid rgb(231, 230, 230); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+#listObjId{
+    display: flex;
+    flex-direction: column;
+}
+#eachList{
+    border: 1px solid rgb(231, 230, 230); 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+#comp{
+    display: flex;
+    align-items:center ;
+    justify-content: center;
 }

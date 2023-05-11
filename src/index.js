@@ -11,11 +11,12 @@ function component() {
        element.innerHTML=`<p>Today's To Do</p> <img class="refresh" alt="refresh page">`;
     const input=document.createElement('div');
       input.id='input_div';
-      input.innerHTML=`<input placeholder="Add to your list...><img class="clear" alt="clear">` ;
+      input.innerHTML=`<input placeholder="Add to your list..."><img class="clear" alt="clear">` ;
       const listObj=document.createElement('div');
           listObj.id="listObjId";
           list.forEach((lists) => {
             const listDiv=document.createElement('div');
+            listDiv.id="eachList"
               listDiv.innerHTML=`<div class="left"><input type=checkbox id="check"><span class="des">${lists.description}</span></div><img class="more" alt="more">`;
               listObj.appendChild(listDiv)
           });
@@ -25,6 +26,7 @@ function component() {
           container.appendChild(element)
           container.appendChild(input)
           container.appendChild(listObj)
+          container.appendChild(completed)
          
 
   // for (let i = 0; i < list.length; i++) {
