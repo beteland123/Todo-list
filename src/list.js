@@ -7,12 +7,12 @@ const list=[
     {
         description: 'blabal',
         completed:'true',
-        index:1 
+        index:2 
      },
      {
         description: 'blabal',
         completed:'true',
-        index:1 
+        index:3 
      }
 ]
 export default list;
