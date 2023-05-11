@@ -1,16 +1,16 @@
 let list=[
     {
-       description: 'blabal',
+       description: 'wash cloth',
        completed:'true',
        index:3 
     },
     {
-        description: 'blabal',
+        description: 'read book',
         completed:'true',
         index:2 
      },
      {
-        description: 'blabal',
+        description: 'complete webpack project',
         completed:'true',
         index:1 
      }

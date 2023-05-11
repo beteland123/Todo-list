@@ -5,11 +5,13 @@ body{
     background-color: rgb(235, 226, 226);
 }
 .container{
+    height: 70%;
     background-color: white;
-    padding: 15px;
+    padding: 1em;
     display: flex;
     flex-direction: column;
-    margin: 3em;
+    margin: 5em auto;
+    width: 60%;
 }
 #list_elemnt{
     display: flex;
@@ -38,4 +40,20 @@ body{
     display: flex;
     align-items:center ;
     justify-content: center;
+}
+#comp span{
+    color:  hsl(260deg 26.61% 66.18%);;
+}
+.more,.clear,.refresh{
+    width: 1em;
+    height: auto;
+}
+#input_div input{
+    width: 80%;
+}
+h1{
+    display:flex;
+    justify-content: center;
+    font-size: medium;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
