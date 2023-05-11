@@ -15,7 +15,7 @@
 - [:star:️ Show your support](#support)
 - [:pray: Acknowledgements](#acknowledgements)
 - [:memo: License](#license)
-# :book: [My-portifolio] <a name="about-project"></a>
+# :book: [My-todo list] <a name="about-project"></a>
 > This project is called To do list which is developed for the purpose of design  a website with webpack bundling  and for practicing what I have learned about ES6 and dynamic website
 ## :hammer_and_wrench: Built With <a name="built-with"> using Html and CSS</a>
 ### Tech Stack <a name="tech-stack"></a>
