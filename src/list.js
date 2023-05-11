@@ -1,8 +1,8 @@
-const list=[
+let list=[
     {
        description: 'blabal',
        completed:'true',
-       index:1 
+       index:3 
     },
     {
         description: 'blabal',
@@ -12,7 +12,7 @@ const list=[
      {
         description: 'blabal',
         completed:'true',
-        index:3 
+        index:1 
      }
 ]
 export default list;

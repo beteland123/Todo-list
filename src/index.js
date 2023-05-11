@@ -2,6 +2,9 @@ import _ from 'lodash'
 import list from './list.js'
 import './style.css';
 function component() {
+
+  list.sort((a, b) => a.index - b.index);
+
   const container=document.querySelector('.container');
   const element=document.createElement('div');
        element.id='list_elemnt';
