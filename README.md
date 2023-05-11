@@ -37,7 +37,7 @@
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML5</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript</a></li>
-    <li><a href="">Webpack</a><li>
+    <li><a href="https://webpack.js.org/guides/getting-started/#basic-setup">Webpack</a></li>
   </ul>
 </details>
 ### Key Features <a name="key-features"></a>
