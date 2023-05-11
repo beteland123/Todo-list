@@ -116,5 +116,5 @@ I would like to thank my Microveseinc
 
 ## :memo: License <a name="license"></a>
 
-This project is [MIT](https://github.com/beteland123/prortifolio/blob/main/LICENSE) licensed.
+This project is [MIT](https://github.com/beteland123/Todo-list/blob/feature/todo-list-structure/LICENSE) licensed.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
