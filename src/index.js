@@ -7,7 +7,7 @@ import del from './delete.jpeg';
 
 const list = new lists();
 
-const renderList = (description) => {
+const renderList = (description, id) => {
   const listDiv = document.createElement('div');
   listDiv.classList.add('eachList');
   listDiv.innerHTML = `
@@ -15,8 +15,8 @@ const renderList = (description) => {
       <input type="checkbox" id="check">
       <span class="des">${description}</span>
     </div>
-    <img class="more" src="${more}" alt="more">
-    <img class="removebtn" src="${del}" alt="remove" style="display:none;">
+    <img class="more" src="${more}" alt="more" data-id="${id}">
+    <img class="removebtn" src="${del}" alt="remove" style="display:none;" data-id="${id}">
   `;
   const newDiv = document.createElement('div');
   newDiv.classList.add('eachList');
@@ -27,9 +27,34 @@ const renderList = (description) => {
 const updateList = () => {
   const listObj = document.getElementById('listObjId');
   listObj.innerHTML = '';
-  list.lists.forEach((list) => {
-    let listd = renderList(list.description);
+  list.lists.forEach((list, index) => {
+    let listd = renderList(list.description, index);
     listObj.appendChild(listd);
+  });
+
+  // Attach event listeners to more and remove buttons
+  attachEventListeners();
+};
+
+const attachEventListeners = () => {
+  const moreIcons = document.querySelectorAll('.more');
+  moreIcons.forEach((moreIcon) => {
+    moreIcon.addEventListener('click', (event) => {
+      const parent = event.target.parentNode;
+      const removeBtn = parent.querySelector('.removebtn');
+      moreIcon.style.display = 'none';
+      removeBtn.style.display = 'flex';
+    });
+  });
+
+  const removeBtns = document.querySelectorAll('.removebtn');
+  removeBtns.forEach((removeBtn) => {
+    removeBtn.addEventListener('click', (event) => {
+      const { id } = event.target.dataset;
+      list.removelist(id);
+      // Update the list
+      updateList();
+    });
   });
 };
 
@@ -43,8 +68,8 @@ const component = () => {
   input.innerHTML = `<input class="inputSpace" placeholder="Add to your list..."><img class="clear" src="${left}" alt="clear">`;
   const listObj = document.createElement('div');
   listObj.id = 'listObjId';
-  list.lists.forEach((list) => {
-    let listd = renderList(list.description);
+  list.lists.forEach((list, index) => {
+    let listd = renderList(list.description, index);
     listObj.appendChild(listd);
   });
   const completed = document.createElement('div');
@@ -72,23 +97,9 @@ const component = () => {
       updateList();
     }
   });
-  
-  const moreIcons = document.querySelectorAll('.more');
-  moreIcons.forEach((moreIcon) => {
-    moreIcons.addEventListener('click', (event) => {
-       console.log(moreIcons)
-     /// const parent = event.target.parentNode;
-      const removeBtn = parent.querySelector('.removebtn');
-      moreIcon.style.display = 'none';
-      removeBtn.style.display = 'flex';
-      removeBtn.addEventListener('click', (event) => {
-        const { id } = event.target;
-        list.removelist(id);
-        // Update the list
-        updateList();
-      });
-    });
-  });
+
+  // Attach event listeners to more and remove buttons
+  attachEventListeners();
 };
 
 component();
