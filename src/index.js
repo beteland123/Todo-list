@@ -7,6 +7,32 @@ import del from './delete.jpeg';
 
 const list = new lists();
 
+const renderList = (description) => {
+  const listDiv = document.createElement('div');
+  listDiv.classList.add('eachList');
+  listDiv.innerHTML = `
+    <div class="left">
+      <input type="checkbox" id="check">
+      <span class="des">${description}</span>
+    </div>
+    <img class="more" src="${more}" alt="more">
+    <img class="removebtn" src="${del}" alt="remove" style="display:none;">
+  `;
+  const newDiv = document.createElement('div');
+  newDiv.classList.add('eachList');
+  newDiv.innerHTML = listDiv.innerHTML;
+  return newDiv;
+};
+
+const updateList = () => {
+  const listObj = document.getElementById('listObjId');
+  listObj.innerHTML = '';
+  list.lists.forEach((list) => {
+    let listd = renderList(list.description);
+    listObj.appendChild(listd);
+  });
+};
+
 const component = () => {
   const container = document.querySelector('.container');
   const element = document.createElement('div');
@@ -18,10 +44,8 @@ const component = () => {
   const listObj = document.createElement('div');
   listObj.id = 'listObjId';
   list.lists.forEach((list) => {
-    const listDiv = document.createElement('div');
-    listDiv.classList.add('eachList');
-    listDiv.innerHTML = `<div class="left"><input type="checkbox" id="check"><span class="des">${list.description}</span></div><img class="more" src="${more}" alt="more"><img class="removebtn" src="${del}" alt="remove" style="display:none;">`;
-    listObj.appendChild(listDiv);
+    let listd = renderList(list.description);
+    listObj.appendChild(listd);
   });
   const completed = document.createElement('div');
   completed.id = 'comp';
@@ -44,29 +68,27 @@ const component = () => {
       // Clear the input fields
       inputVar.value = '';
 
-      // Display updated list
-      component();
+      // Update the list
+      updateList();
     }
   });
-
+  
   const moreIcons = document.querySelectorAll('.more');
   moreIcons.forEach((moreIcon) => {
-    moreIcon.addEventListener('click', (event) => {
-      const parent = event.target.parentNode;
+    moreIcons.addEventListener('click', (event) => {
+       console.log(moreIcons)
+     /// const parent = event.target.parentNode;
       const removeBtn = parent.querySelector('.removebtn');
       moreIcon.style.display = 'none';
       removeBtn.style.display = 'flex';
-       removeBtn.addEventListener('click', (event) => {
-      const { id } = event.target;
-      console.log(id)
-      list.removelist(id);
-      component();
-    });
+      removeBtn.addEventListener('click', (event) => {
+        const { id } = event.target;
+        list.removelist(id);
+        // Update the list
+        updateList();
+      });
     });
   });
-
- 
-  
 };
 
 component();
