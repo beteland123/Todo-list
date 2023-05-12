@@ -1,25 +1,26 @@
-import list from './list.js';
+import lists from './list.js';
 import './style.css';
 import more from './more.png';
 import recycle from './recycle.png';
 import left from './to-left.png';
+import del from './delete.jpeg';
 
-function component() {
-  list.sort((a, b) => a.index - b.index);
+const list = new lists();
 
+const component = () => {
   const container = document.querySelector('.container');
   const element = document.createElement('div');
   element.id = 'list_elemnt';
   element.innerHTML = `<p>Today's To Do</p> <img class="refresh" src="${recycle}" alt="refresh page">`;
   const input = document.createElement('div');
   input.id = 'input_div';
-  input.innerHTML = `<input placeholder="Add to your list..."><img class="clear" src="${left}"alt="clear">`;
+  input.innerHTML = `<input class="inputSpace" placeholder="Add to your list..."><img class="clear" src="${left}" alt="clear">`;
   const listObj = document.createElement('div');
   listObj.id = 'listObjId';
-  list.forEach((lists) => {
+  list.lists.forEach((list) => {
     const listDiv = document.createElement('div');
-    listDiv.id = 'eachList';
-    listDiv.innerHTML = `<div class="left"><input type=checkbox id="check"><span class="des">${lists.description}</span></div><img class="more" src="${more}" alt="more">`;
+    listDiv.classList.add('eachList');
+    listDiv.innerHTML = `<div class="left"><input type="checkbox" id="check"><span class="des">${list.description}</span></div><img class="more" src="${more}" alt="more"><img class="removebtn" src="${del}" alt="remove" style="display:none;">`;
     listObj.appendChild(listDiv);
   });
   const completed = document.createElement('div');
@@ -29,6 +30,43 @@ function component() {
   container.appendChild(input);
   container.appendChild(listObj);
   container.appendChild(completed);
-}
+
+  const inputVar = document.querySelector('.inputSpace');
+  inputVar.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      // Get the values from the input fields
+      const description = inputVar.value;
+
+      // Add task
+      list.addlist(description);
+
+      // Clear the input fields
+      inputVar.value = '';
+
+      // Display updated list
+      component();
+    }
+  });
+
+  const moreIcons = document.querySelectorAll('.more');
+  moreIcons.forEach((moreIcon) => {
+    moreIcon.addEventListener('click', (event) => {
+      const parent = event.target.parentNode;
+      const removeBtn = parent.querySelector('.removebtn');
+      moreIcon.style.display = 'none';
+      removeBtn.style.display = 'flex';
+       removeBtn.addEventListener('click', (event) => {
+      const { id } = event.target;
+      console.log(id)
+      list.removelist(id);
+      component();
+    });
+    });
+  });
+
+ 
+  
+};
 
 component();
