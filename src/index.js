@@ -7,6 +7,7 @@ import del from './delete.jpeg';
 
 const list = new lists();
 
+
 const renderList = (description, id) => {
   const listDiv = document.createElement('div');
   listDiv.classList.add('eachList');
@@ -20,6 +21,7 @@ const renderList = (description, id) => {
   `;
   const newDiv = document.createElement('div');
   newDiv.classList.add('eachList');
+  newDiv.dataset.id = id; // Add the unique ID as a dataset attribute
   newDiv.innerHTML = listDiv.innerHTML;
   return newDiv;
 };
@@ -36,27 +38,29 @@ const updateList = () => {
   attachEventListeners();
 };
 
-const attachEventListeners = () => {
-  const moreIcons = document.querySelectorAll('.more');
-  moreIcons.forEach((moreIcon) => {
-    moreIcon.addEventListener('click', (event) => {
-      const parent = event.target.parentNode;
-      const removeBtn = parent.querySelector('.removebtn');
-      moreIcon.style.display = 'none';
-      removeBtn.style.display = 'flex';
-    });
-  });
 
-  const removeBtns = document.querySelectorAll('.removebtn');
-  removeBtns.forEach((removeBtn) => {
-    removeBtn.addEventListener('click', (event) => {
-      const { id } = event.target.dataset;
-      list.removelist(id);
-      // Update the list
-      updateList();
+  const attachEventListeners = () => {
+    const moreIcons = document.querySelectorAll('.more');
+    moreIcons.forEach((moreIcon) => {
+      moreIcon.addEventListener('click', (event) => {
+        const parent = event.target.parentNode;
+        const removeBtn = parent.querySelector('.removebtn');
+        moreIcon.style.display = 'none';
+        removeBtn.style.display = 'flex';
+      });
     });
-  });
-};
+  
+    const removeBtns = document.querySelectorAll('.removebtn');
+    removeBtns.forEach((removeBtn) => {
+      removeBtn.addEventListener('click', (event) => {
+        const parent = event.target.parentNode;
+        const taskId = parent.dataset.id; // Get the task ID from the parent element
+        list.removelist(parseInt(taskId, 10)); // Convert the ID to an integer before passing to removelist
+        updateList();
+      });
+    });
+  };
+ 
 
 const component = () => {
   const container = document.querySelector('.container');
