@@ -70,3 +70,6 @@ h1 {
   font-size: medium;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+.completed {
+  text-decoration: line-through;
+}
