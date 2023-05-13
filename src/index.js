@@ -28,10 +28,10 @@ const renderList = (description, id, completed) => {
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       newDiv.querySelector('.des').classList.add('completed');
-      list.completelist(id);
+      list.completelist(id + 1);
     } else {
       newDiv.querySelector('.des').classList.remove('completed');
-      list.uncompletelist(id);
+      list.uncompletelist(id + 1);
     }
   });
 
@@ -40,7 +40,7 @@ const renderList = (description, id, completed) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const newDescription = descriptionSpan.innerText.trim();
-      list.editlist(id, newDescription);
+      list.editlist(id + 1, newDescription);
       updateList();
     }
   });
@@ -73,14 +73,14 @@ const attachEventListeners = () => {
   });
 
   const removeBtns = document.querySelectorAll('.removebtn');
-  removeBtns.forEach((removeBtn) => {
-    removeBtn.addEventListener('click', (event) => {
-      const parent = event.target.parentNode;
-      const taskId = parent.dataset.id; // Get the task ID from the parent element
-      list.removelist(parseInt(taskId, 10)); // Convert the ID to an integer before passing to removelist
-      updateList();
-    });
+removeBtns.forEach((removeBtn) => {
+  removeBtn.addEventListener('click', (event) => {
+    const parent = event.target.parentNode;
+    const taskId = parseInt(parent.querySelector('.des').dataset.id, 10); // Get the task ID from the description span
+    list.removelist(taskId + 1);
+    updateList();
   });
+});
 };
 
 const component = () => {
