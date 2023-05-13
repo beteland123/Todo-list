@@ -2,7 +2,6 @@
 - [:book: About the Project](#about-project)
   - [:hammer_and_wrench: Built With](#built-with)
    - [Key Features](#key-features)
-  - [:rocket: Live Demo](#live-demo)
 - [:computer: Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -45,10 +44,7 @@
 - [ ]**[use a webpack for bundling ]**
 - [ ]**[todo list app where you can add task]**
 - [ ]**[delete task , edit task ans mark task]**
-## :rocket: Live Demo <a name="live-demo"></a>
 
-N/A
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## :computer: Getting Started <a name="getting-started"></a>
 
