@@ -8,8 +8,9 @@ class lists {
 
   addlist(description) {
     const task = {
-      id: this.currentId, // Assign a unique ID
+      id: this.currentId,
       description,
+      completed: false,
     };
     this.lists.push(task);
     this.currentId++; // Increment the currentId for the next task
@@ -43,6 +44,10 @@ class lists {
       this.lists[taskIndex].completed = false;
       localStorage.setItem('lists', JSON.stringify(this.lists));
     }
+  }
+  clearCompleted() {
+    this.lists = this.lists.filter(list => !list.completed);
+    localStorage.setItem('lists', JSON.stringify(this.lists));
   }
 }
 
