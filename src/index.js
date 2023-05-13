@@ -61,28 +61,27 @@ const updateList = () => {
 };
 
 
-  const attachEventListeners = () => {
-    const moreIcons = document.querySelectorAll('.more');
-    moreIcons.forEach((moreIcon) => {
-      moreIcon.addEventListener('click', (event) => {
-        const parent = event.target.parentNode;
-        const removeBtn = parent.querySelector('.removebtn');
-        moreIcon.style.display = 'none';
-        removeBtn.style.display = 'flex';
-      });
+const attachEventListeners = () => {
+  const moreIcons = document.querySelectorAll('.more');
+  moreIcons.forEach((moreIcon) => {
+    moreIcon.addEventListener('click', (event) => {
+      const parent = event.target.parentNode;
+      const removeBtn = parent.querySelector('.removebtn');
+      moreIcon.style.display = 'none';
+      removeBtn.style.display = 'flex';
     });
-  
-    const removeBtns = document.querySelectorAll('.removebtn');
-    removeBtns.forEach((removeBtn) => {
-      removeBtn.addEventListener('click', (event) => {
-        const parent = event.target.parentNode;
-        const taskId = parent.dataset.id; // Get the task ID from the parent element
-        list.removelist(parseInt(taskId, 10)); // Convert the ID to an integer before passing to removelist
-        updateList();
-      });
+  });
+
+  const removeBtns = document.querySelectorAll('.removebtn');
+  removeBtns.forEach((removeBtn) => {
+    removeBtn.addEventListener('click', (event) => {
+      const parent = event.target.parentNode;
+      const taskId = parent.dataset.id; // Get the task ID from the parent element
+      list.removelist(parseInt(taskId, 10)); // Convert the ID to an integer before passing to removelist
+      updateList();
     });
-  };
- 
+  });
+};
 
 const component = () => {
   const container = document.querySelector('.container');
@@ -126,6 +125,12 @@ const component = () => {
 
   // Attach event listeners to more and remove buttons
   attachEventListeners();
+
+  const clearCompleted = document.querySelector('#comp span');
+  clearCompleted.addEventListener('click', () => {
+    list.clearCompleted();
+    updateList();
+  });
 };
 
 component();
