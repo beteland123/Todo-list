@@ -20,6 +20,14 @@ class lists {
 
   removelist(id) {
     this.lists = this.lists.filter((task) => task.id !== id);
+  
+    // Reset the id property of each remaining task
+    this.lists.forEach((task, index) => {
+      task.id = index;
+    });
+  
+    this.currentId = this.lists.length; // Update currentId to the new length
+  
     localStorage.setItem('lists', JSON.stringify(this.lists));
   }
 
@@ -47,6 +55,14 @@ class lists {
   }
   clearCompleted() {
     this.lists = this.lists.filter(list => !list.completed);
+  
+    // Reset the id property of each remaining task
+    this.lists.forEach((task, index) => {
+      task.id = index;
+    });
+  
+    this.currentId = this.lists.length; // Update currentId to the new length
+  
     localStorage.setItem('lists', JSON.stringify(this.lists));
   }
 }
