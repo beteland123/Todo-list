@@ -58,6 +58,14 @@ class lists {
     this.lists = this.lists.filter((task) => task.id !== id);
     localStorage.setItem('lists', JSON.stringify(this.lists));
   }
+  
+  editlist(id, newDescription) {
+    const taskIndex = this.lists.findIndex((task) => task.id === id);
+    if (taskIndex !== -1) {
+      this.lists[taskIndex].description = newDescription;
+      localStorage.setItem('lists', JSON.stringify(this.lists));
+    }
+  }
 }
 
 export default lists;
