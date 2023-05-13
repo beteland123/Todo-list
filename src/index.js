@@ -1,4 +1,4 @@
-import lists from './list.js';
+import lists from './modules/list.js';
 import './style.css';
 import more from './more.png';
 import recycle from './recycle.png';
@@ -14,7 +14,7 @@ const renderList = (description, id) => {
   listDiv.innerHTML = `
     <div class="left">
       <input type="checkbox" id="check">
-      <span class="des">${description}</span>
+      <span class="des" contenteditable="true" data-id="${id}">${description}</span>
     </div>
     <img class="more" src="${more}" alt="more" data-id="${id}">
     <img class="removebtn" src="${del}" alt="remove" style="display:none;" data-id="${id}">
@@ -23,6 +23,18 @@ const renderList = (description, id) => {
   newDiv.classList.add('eachList');
   newDiv.dataset.id = id; // Add the unique ID as a dataset attribute
   newDiv.innerHTML = listDiv.innerHTML;
+
+  // Add event listener to the description span
+  const descriptionSpan = newDiv.querySelector('.des');
+  descriptionSpan.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      const newDescription = descriptionSpan.innerText.trim();
+      list.editlist(id, newDescription);
+      updateList();
+    }
+  });
+  
   return newDiv;
 };
 
