@@ -1,7 +1,7 @@
-class lists {
+class Lists {
   constructor() {
     this.lists = JSON.parse(localStorage.getItem('lists')) || [];
-    this.currentId = this.lists.length > 0 ? this.lists[this.lists.length - 1].id + 1 : 1; // Initialize currentId based on existing tasks or start from 1
+    this.currentId = this.lists.length > 0 ? this.lists[this.lists.length - 1].id + 1 : 1;
   }
 
   addlist(description) {
@@ -11,8 +11,8 @@ class lists {
       completed: false,
     };
     this.lists.push(task);
-    this.currentId++; // Increment the currentId for the next task
-    
+    this.currentId += 1; // Increment the currentId for the next task
+
     localStorage.setItem('lists', JSON.stringify(this.lists));
   }
 
@@ -20,14 +20,14 @@ class lists {
     const index = this.lists.findIndex((task) => task.id === id);
     if (index !== -1) {
       this.lists.splice(index, 1); // Remove the task at the given index
-  
+
       // Update the id property of each remaining task
-      for (let i = index; i < this.lists.length; i++) {
-        this.lists[i].id = this.lists[i].id - 1;
+      for (let i = index; i < this.lists.length; i += 1) {
+        this.lists[i].id -= 1;
       }
-  
-      this.currentId = this.lists.length > 0 ? this.lists[this.lists.length - 1].id + 1 : 1; // Update currentId to the new length or the last task's id + 1
-  
+
+      this.currentId = this.lists.length > 0 ? this.lists[this.lists.length - 1].id + 1 : 1;
+
       localStorage.setItem('lists', JSON.stringify(this.lists));
     }
   }
@@ -39,7 +39,7 @@ class lists {
       localStorage.setItem('lists', JSON.stringify(this.lists));
     }
   }
-  
+
   completelist(id) {
     const taskIndex = this.lists.findIndex((task) => task.id === id);
     if (taskIndex !== -1) {
@@ -55,19 +55,18 @@ class lists {
       localStorage.setItem('lists', JSON.stringify(this.lists));
     }
   }
-  
+
   clearCompleted() {
-    this.lists = this.lists.filter(list => !list.completed);
-  
+    this.lists = this.lists.filter((list) => !list.completed);
+
     // Reset the id property of each remaining task
-    for (let i = 0; i < this.lists.length; i++) {
+    for (let i = 0; i < this.lists.length; i += 1) {
       this.lists[i].id = i + 1;
     }
-  
-    this.currentId = this.lists.length > 0 ? this.lists[this.lists.length - 1].id + 1 : 1; // Update currentId to the new length or the last task's id + 1
-  
+
+    this.currentId = this.lists.length > 0 ? this.lists[this.lists.length - 1].id + 1 : 1;
     localStorage.setItem('lists', JSON.stringify(this.lists));
   }
 }
 
-export default lists;
+export default Lists;
