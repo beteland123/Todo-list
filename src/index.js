@@ -1,12 +1,11 @@
-import lists from './modules/list.js';
+import Lists from './modules/list.js';
 import './style.css';
 import more from './more.png';
 import recycle from './recycle.png';
 import left from './to-left.png';
 import del from './delete.jpeg';
 
-const list = new lists();
-
+const List = new Lists();
 
 const renderList = (description, id, completed) => {
   const listDiv = document.createElement('div');
@@ -28,10 +27,10 @@ const renderList = (description, id, completed) => {
   checkbox.addEventListener('change', () => {
     if (checkbox.checked) {
       newDiv.querySelector('.des').classList.add('completed');
-      list.completelist(id + 1);
+      List.completelist(id + 1);
     } else {
       newDiv.querySelector('.des').classList.remove('completed');
-      list.uncompletelist(id + 1);
+      List.uncompletelist(id + 1);
     }
   });
 
@@ -40,26 +39,27 @@ const renderList = (description, id, completed) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       const newDescription = descriptionSpan.innerText.trim();
-      list.editlist(id + 1, newDescription);
+      List.editlist(id + 1, newDescription);
+      /* eslint-disable no-use-before-define */
       updateList();
     }
   });
-  
+
   return newDiv;
 };
 
 const updateList = () => {
   const listObj = document.getElementById('listObjId');
   listObj.innerHTML = '';
-  list.lists.forEach((list, index) => {
-    let listd = renderList(list.description, index, list.completed);
+  List.lists.forEach((list, index) => {
+    const listd = renderList(list.description, index, list.completed);
     listObj.appendChild(listd);
   });
 
   // Attach event listeners to more and remove buttons
+  /* eslint-disable no-use-before-define */
   attachEventListeners();
 };
-
 
 const attachEventListeners = () => {
   const moreIcons = document.querySelectorAll('.more');
@@ -73,14 +73,14 @@ const attachEventListeners = () => {
   });
 
   const removeBtns = document.querySelectorAll('.removebtn');
-removeBtns.forEach((removeBtn) => {
-  removeBtn.addEventListener('click', (event) => {
-    const parent = event.target.parentNode;
-    const taskId = parseInt(parent.querySelector('.des').dataset.id, 10); // Get the task ID from the description span
-    list.removelist(taskId + 1);
-    updateList();
+  removeBtns.forEach((removeBtn) => {
+    removeBtn.addEventListener('click', (event) => {
+      const parent = event.target.parentNode;
+      const taskId = parseInt(parent.querySelector('.des').dataset.id, 10); // Get the task ID from the description span
+      List.removelist(taskId + 1);
+      updateList();
+    });
   });
-});
 };
 
 const component = () => {
@@ -93,8 +93,8 @@ const component = () => {
   input.innerHTML = `<input class="inputSpace" placeholder="Add to your list..."><img class="clear" src="${left}" alt="clear">`;
   const listObj = document.createElement('div');
   listObj.id = 'listObjId';
-  list.lists.forEach((list, index) => {
-    let listd = renderList(list.description, index);
+  List.lists.forEach((list, index) => {
+    const listd = renderList(list.description, index);
     listObj.appendChild(listd);
   });
   const completed = document.createElement('div');
@@ -113,7 +113,7 @@ const component = () => {
       const description = inputVar.value;
 
       // Add task
-      list.addlist(description);
+      List.addlist(description);
 
       // Clear the input fields
       inputVar.value = '';
@@ -128,7 +128,7 @@ const component = () => {
 
   const clearCompleted = document.querySelector('#comp span');
   clearCompleted.addEventListener('click', () => {
-    list.clearCompleted();
+    List.clearCompleted();
     updateList();
   });
 };
