@@ -93,7 +93,7 @@ Install this project with:git and npm install
 ## :handshake: Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/beteland123/Todo-list/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- SUPPORT -->
