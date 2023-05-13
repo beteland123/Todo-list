@@ -8,23 +8,33 @@ import del from './delete.jpeg';
 const list = new lists();
 
 
-const renderList = (description, id) => {
+const renderList = (description, id, completed) => {
   const listDiv = document.createElement('div');
   listDiv.classList.add('eachList');
   listDiv.innerHTML = `
     <div class="left">
-      <input type="checkbox" id="check">
-      <span class="des" contenteditable="true" data-id="${id}">${description}</span>
+      <input type="checkbox" id="check-${id}" ${completed ? 'checked' : ''}>
+      <span class="des ${completed ? 'completed' : ''}" contenteditable="true" data-id="${id}">${description}</span>
     </div>
     <img class="more" src="${more}" alt="more" data-id="${id}">
     <img class="removebtn" src="${del}" alt="remove" style="display:none;" data-id="${id}">
   `;
   const newDiv = document.createElement('div');
   newDiv.classList.add('eachList');
-  newDiv.dataset.id = id; // Add the unique ID as a dataset attribute
+  newDiv.dataset.id = id;
   newDiv.innerHTML = listDiv.innerHTML;
 
-  // Add event listener to the description span
+  const checkbox = newDiv.querySelector(`#check-${id}`);
+  checkbox.addEventListener('change', () => {
+    if (checkbox.checked) {
+      newDiv.querySelector('.des').classList.add('completed');
+      list.completelist(id);
+    } else {
+      newDiv.querySelector('.des').classList.remove('completed');
+      list.uncompletelist(id);
+    }
+  });
+
   const descriptionSpan = newDiv.querySelector('.des');
   descriptionSpan.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
@@ -42,7 +52,7 @@ const updateList = () => {
   const listObj = document.getElementById('listObjId');
   listObj.innerHTML = '';
   list.lists.forEach((list, index) => {
-    let listd = renderList(list.description, index);
+    let listd = renderList(list.description, index, list.completed);
     listObj.appendChild(listd);
   });
 
