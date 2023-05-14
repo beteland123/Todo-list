@@ -45,6 +45,10 @@ const renderList = (description, id, completed) => {
     }
   });
 
+  if (completed) {
+    newDiv.querySelector('.des').classList.add('completed');
+  }
+
   return newDiv;
 };
 
