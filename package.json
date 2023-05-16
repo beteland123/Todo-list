@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "homepage": "https://your-github-username.github.io/your-project-name/",
+  "homepage": "https://beteland123.github.io/Todo-list/",
   "scripts": {
     "deploy": "gh-pages -d dist",
     "predeploy": "npm run build",
