@@ -47,7 +47,7 @@
 - [ ]**[delete task , edit task ans mark task]**
 ## :rocket: Live Demo <a name="live-demo"></a>
 
-N/A
+[here](https://beteland123.github.io/Todo-list/)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## :computer: Getting Started <a name="getting-started"></a>
